@@ -49,6 +49,14 @@ const CustomerForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+
+    const isEmpty = Object.values(formData).some((val) => val.trim() === '');
+    if (isEmpty) {
+      alert('Please fill in all fields');
+      return;
+    }
+
     console.log('Submitted Form:', formData);
     setSubmittedData(formData);
     setFormData(initialFormState); 
@@ -70,6 +78,7 @@ const CustomerForm = () => {
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             className="w-full p-2 border rounded"
+            required
           />
         </div>
 
@@ -80,10 +89,10 @@ const CustomerForm = () => {
             value={formData.mobile}
             onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
             className="w-full p-2 border rounded"
+            required
           />
         </div>
 
-    
         <div>
           <label className="block font-medium mb-1">Order Date</label>
           <input
@@ -102,9 +111,9 @@ const CustomerForm = () => {
             }}
             placeholder="DD/ or DD/MM"
             className="w-full p-2 border rounded"
+            required
           />
         </div>
-
 
         <div>
           <label className="block font-medium mb-1">Gender</label>
@@ -112,6 +121,7 @@ const CustomerForm = () => {
             value={formData.gender}
             onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
             className="w-full p-2 border rounded"
+            required
           >
             <option value="">Select Gender</option>
             <option value="male">Male</option>
@@ -119,7 +129,6 @@ const CustomerForm = () => {
             <option value="other">Other</option>
           </select>
         </div>
-
 
         <div>
           <label className="block font-medium mb-1">Blood Group</label>
@@ -162,7 +171,6 @@ const CustomerForm = () => {
           </div>
         </div>
 
-   
         <button
           type="submit"
           className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
